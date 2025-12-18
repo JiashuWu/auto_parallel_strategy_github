@@ -1,2 +1,14 @@
 .DS_Store
 analysis/.DS_Store
+analysis/__pycache__/__init__.cpython-311.pyc
+analysis/__pycache__/analysis.cpython-310.pyc
+analysis/__pycache__/analysis.cpython-311.pyc
+analysis/__pycache__/config.cpython-310.pyc
+analysis/__pycache__/config.cpython-311.pyc
+analysis/__pycache__/constant.cpython-310.pyc
+analysis/__pycache__/constant.cpython-311.pyc
+analysis/__pycache__/logger.cpython-310.pyc
+analysis/__pycache__/logger.cpython-311.pyc
+analysis/__pycache__/once_test.cpython-310.pyc
+analysis/__pycache__/utils.cpython-310.pyc
+analysis/__pycache__/utils.cpython-311.pyc
