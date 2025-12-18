@@ -12,3 +12,7 @@ analysis/__pycache__/logger.cpython-311.pyc
 analysis/__pycache__/once_test.cpython-310.pyc
 analysis/__pycache__/utils.cpython-310.pyc
 analysis/__pycache__/utils.cpython-311.pyc
+analysis/output_20251214.txt
+resources/__pycache__/config_generator.cpython-310.pyc
+resources/__pycache__/env_sh_updater.cpython-310.pyc
+resources/__pycache__/yaml_updater.cpython-310.pyc
