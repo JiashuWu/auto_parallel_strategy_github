@@ -1,0 +1,12 @@
+{
+    "name": "qwen25_7b",
+    "num_layers": 28,
+    "n_head": 28,
+    "hidden_dim": 3584,
+    "vocab_size": 152064,
+    "max_seq_len": 32768,
+    "num_key_value_heads": 4,
+    "ffn_embed_dim": 18944,
+    "model_type": "qwen2", 
+    "mlp_gated_linear_units": true
+}

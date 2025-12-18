@@ -1,0 +1,11 @@
+{
+    "name": "baichuan2_7b",
+    "num_layers": 32,
+    "n_head": 32,
+    "hidden_dim": 4096,
+    "vocab_size": 125696,
+    "max_seq_len": 4096,
+    "num_key_value_heads": 32,
+    "ffn_embed_dim": 11008,
+    "model_type": "baichuan"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "telechat2_5-35b",
+    "num_layers": 64,
+    "n_head": 48,
+    "hidden_dim": 6144,
+    "vocab_size": 131072,
+    "max_seq_len": 8192,
+    "num_key_value_heads": 48,
+    "ffn_embed_dim": 20480,
+    "model_type": "telechat2_5",
+    "mlp_gated_linear_units": true
+}

@@ -1,0 +1,10 @@
+{
+    "name": "glm4_9b",
+    "num_layers": 40,
+    "n_head": 32,
+    "hidden_dim": 4096,
+    "vocab_size": 151552,
+    "max_seq_len": 131072,
+    "ffn_embed_dim": 13696,
+    "model_type": "chatglm"
+}

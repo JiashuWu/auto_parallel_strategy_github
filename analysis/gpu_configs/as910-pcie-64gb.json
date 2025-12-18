@@ -1,0 +1,11 @@
+{
+    "name": "as910-pcie-64gb",
+    "mem_per_GPU_in_GB": 64,
+    "hbm_bandwidth_in_GB_per_sec": 819,
+    "intra_node_bandwidth_in_GB_per_sec": 400,
+    "intra_node_min_message_latency": 8e-06,
+    "peak_fp16_TFLOPS": 376,
+    "peak_i8_TFLOPS": 752,
+    "peak_i4_TFLOPS": 1504,
+    "inter_node_bandwidth_in_GB_per_sec": 200
+}

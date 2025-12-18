@@ -1,0 +1,116 @@
+# model
+model_path: ${MODEL_DIR}
+
+# train
+do_train: true
+num_train_epochs: ${EPOCHS}
+bf16: true
+per_device_train_batch_size: &micro_batch_size_ref ${MICRO_BATCH_SIZE}
+learning_rate: &lr_ref ${LEARNING_RATE}
+lr_scheduler_type: &lr_scheduler_type_ref cosine
+# train - sft
+finetuning_type: full
+
+# dataset
+train_dataset: train_data
+dataset_dir: ${DATASET_PATH}
+val_ratio: 0.1
+# max_samples: 1000
+# dataset - sft
+template: intern2
+ignore_pad_token_for_loss: true
+max_length: &seq_length_ref 128
+data_variable_seq_lengths: &variable_lengths_ref false
+packing: false
+
+# checkpoint
+output_dir: ${ORIGINAL_OUTPUT_DIR}
+save_steps: 100000
+max_steps: 20
+save_total_limit: 2
+save_strategy: 'no'
+
+# output
+logging_steps: 1
+
+# convert_ckpt
+megatron_model_flag: true # 是否使用megatron格式模型
+model_type: GPT
+tokenizer_model: ${MODEL_DIR}/tokenizer.model
+model_type_hf: llama2
+
+# megatron
+megatron_sft: true
+megatron_dataset_flag: false # 是否使用megatron格式数据
+megatron_log_throughput: true # 是否打印吞吐量日志
+megatron_lm:
+    seed: 42
+    # accelerate
+    model_type_name: "gpt"
+    orig_vocab_size: 32000
+    model_return_dict: true
+    pretraining_flag: false
+    return_logits: false
+    # megatron
+    data_path:
+        - megatron/dataset
+    split: "100,0,0"
+    load: ${TRANS_MODEL_BASE_PATH}
+    tensor_model_parallel_size: SUBSTITUTION_TP
+    pipeline_model_parallel_size: SUBSTITUTION_PP
+    sequence_parallel: SUBSTITUTION_SP
+    use_distributed_optimizer: SUBSTITUTION_OP
+    #recompute_method: "block"
+    #recompute_granularity: "full"
+    #recompute_num_layers: 16
+    use_mcore_models: true
+    num_layers: 48
+    hidden_size: 4096
+    ffn_hidden_size: 10240
+    num_attention_heads: 32
+    group_query_attention: true
+    num_query_groups: 2
+    tokenizer_type: "PretrainedFromHF"
+    tokenizer_name_or_path: ${MODEL_DIR}
+    tokenizer_model: ${MODEL_DIR}/tokenizer.model
+    seq_length: *seq_length_ref
+    max_position_embeddings: 32768
+    micro_batch_size: *micro_batch_size_ref
+    global_batch_size: ${GLOBAL_BATCH_SIZE}
+    make_vocab_size_divisible_by: 1
+    padded_vocab_size: 128512
+    lr: *lr_ref
+    lr_decay_style: *lr_scheduler_type_ref
+    dynamic_factor: 2.5
+    rotary_base: 500000
+    untie_embeddings_and_output_weights: true
+    add_bias_linear: false
+    init_method_std: 0.01
+    attention_dropout: 0.0
+    hidden_dropout: 0.0
+    min_lr: 1.25e-7
+    weight_decay: 1.0e-1
+    lr_warmup_fraction: 0.01
+    clip_grad: 1.0
+    adam_beta1: 0.9
+    adam_beta2: 0.95
+    initial_loss_scale: 4096
+    gradient_accumulation_fusion: false
+    use_flash_attn: true
+    use_fused_rotary_pos_emb: true
+    use_rotary_position_embeddings: true
+    swiglu: true
+    use_fused_swiglu: true
+    use_fused_rmsnorm: true
+    position_embedding_type: "rope"
+    normalization: "RMSNorm"
+    norm_epsilon: 1.0e-05
+    masked_softmax_fusion: false
+    attention_softmax_in_fp32: false
+    bf16: true
+    variable_seq_lengths: *variable_lengths_ref
+    disable_bias_linear: true
+    prompt_type: intern2
+    # finetune_args
+    stage: sft
+    is_instruction_dataset: true
